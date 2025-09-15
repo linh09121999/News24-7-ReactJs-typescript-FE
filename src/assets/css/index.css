@@ -1,0 +1,28 @@
+*.Mui-focused .MuiOutlinedInput-notchedOutline,
+*.Mui-focused .MuiPickersOutlinedInput-notchedOutline {
+    outline: none;
+    background: transparent !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+    border: none !important;
+    /* border: 1px solid rgb(255, 255, 255, 0.1) !important */
+}
+
+.MuiInputLabel-root.Mui-focused,
+.MuiInputLabel-shrink {
+    font-weight: 600 !important;
+    font-size: var(--text-xl) !important;
+    background-color: transparent !important;
+    font-family: inherit !important;
+    top: -2rem !important;
+    left: -14px !important;
+    transition: all 0.3s;
+    color: white !important;
+}
+
+.MuiInput-root::before {
+    border-bottom: 2px solid rgb(255, 255, 255, 0.2) !important
+}
+
+.MuiInput-root::after {
+    border-bottom: 2px solid var(--color-green-400) !important
+}
