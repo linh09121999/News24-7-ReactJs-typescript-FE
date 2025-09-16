@@ -199,8 +199,6 @@ const defaultSocialMedia: SocialMedia = {
 }
 
 export interface GlobalState {
-    text: string | null;
-    setText: (user: string | null) => void;
     header: Header;
     pages: Pages[];
     isMobile: boolean;
@@ -217,12 +215,13 @@ export interface GlobalState {
     setTatalData: (total: number) => void;
     footerContent: Footer;
     socialMedia: SocialMedia;
+    titlePage: string;
+    setTitlePage: (page: string) => void
 }
 
 const GlobalContext = createContext<GlobalState | undefined>(undefined);
 
 export const GlobalProvider = ({ children }: { children: ReactNode }) => {
-    const [text, setText] = useState<string | null>("Hello");
     const [keywork, setKeyword] = useState<string>("")
 
     const keyApi = "43e1cbf53535470e9755d9d450375588" //"c974ef460e2e46378e496ade0c22d3ae"
@@ -233,9 +232,9 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
 
     const [articles, setArticles] = useState<Article[]>([]);
     const [totalData, setTatalData] = useState<number>(0)
+    const [titlePage, setTitlePage] = useState<string>("General");
 
     const value = {
-        text, setText,
         pages: defaultPages,
         header: defaultHeader,
         icons: defaultIcons,
@@ -248,6 +247,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         totalData, setTatalData,
         footerContent: defaultFooter,
         socialMedia: defaultSocialMedia,
+        titlePage, setTitlePage
     }
 
     return (

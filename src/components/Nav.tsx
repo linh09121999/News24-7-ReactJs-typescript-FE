@@ -17,7 +17,7 @@ const Nav: React.FC<navProps> = ({
     classNamelIActive,
     classNameTitle
 }) => {
-    const { pages, setSelectNav, selectNav, isMobile } = useGlobal();
+    const { pages, setSelectNav, selectNav, isMobile, setTitlePage } = useGlobal();
     const navigate = useNavigate();
     return (
         <>
@@ -27,8 +27,9 @@ const Nav: React.FC<navProps> = ({
                         <li key={index} className={`${classNameLi} ${selectNav === index ? `${classNamelIActive}` : "text-white "}`}>
                             <a
                                 onClick={() => {
-                                    navigate(page.path)
+                                    // navigate(page.path)
                                     setSelectNav(index)
+                                    setTitlePage(page.id)
                                 }}
                                 className={`${classNameA} `}
                             >

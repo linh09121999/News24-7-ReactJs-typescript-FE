@@ -4,13 +4,7 @@ import { Route, Routes, Navigate, Outlet, BrowserRouter } from 'react-router-dom
 import { Footer, Header, Nav, BackToTop } from './components';
 import { useGlobal } from './context/GlobalContext';
 
-const Home = React.lazy(() => import('./view/filter/General'));
-const Business = React.lazy(() => import('./view/filter/Business'));
-const Entertainment = React.lazy(() => import('./view/filter/Entertainment'));
-const Health = React.lazy(() => import('./view/filter/Health'));
-const Science = React.lazy(() => import('./view/filter/Science'));
-const Sports = React.lazy(() => import('./view/filter/Sports'));
-const Technology = React.lazy(() => import('./view/filter/Technology'));
+const Home = React.lazy(() => import('./view/filter/Home'));
 const Page404 = React.lazy(() => import('./view/pages/page404/Page404'));
 const Page500 = React.lazy(() => import('./view/pages/page500/Page500'));
 
@@ -48,12 +42,12 @@ const App: React.FC = () => {
           <Route path="/" element={<ProtectedRoute />}>
             <Route index element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home/>} />
-            <Route path="/business" element={<Business />} />
+            {/* <Route path="/business" element={<Business />} />
             <Route path="/entertainment" element={<Entertainment />} />
             <Route path="/health" element={<Health />} />
             <Route path="/science" element={<Science />} />
             <Route path="/sports" element={<Sports />} />
-            <Route path="/technology" element={<Technology />} />
+            <Route path="/technology" element={<Technology />} /> */}
           </Route>
         </Routes>
       </Suspense>

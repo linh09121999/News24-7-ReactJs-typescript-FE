@@ -46,6 +46,7 @@ const Main: React.FC<mainProps> = ({
 
     const formatDate = (isoString: string) =>
         format(new Date(isoString), "MM/dd/yyyy hh:mm a");
+
     return (
         <main className="max-w-[1350px] mx-auto">
             <div className="grid gap-[30px] my-[30px] md:grid-cols-[2fr_1fr] grid-col-1">

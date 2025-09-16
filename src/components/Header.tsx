@@ -145,7 +145,7 @@ const Header: React.FC = () => {
                 params: {
                     q: `${keywork}`,
                     from: '2025-08-15',
-                    // from: `${formatDateToYYYYMMDD(header.date)}`,
+                    to: `${formatDateToYYYYMMDD(header.date)}`,
                     sortBy: "publishedAt",
                     apiKey: `${keyApi}`
                 }
@@ -160,7 +160,6 @@ const Header: React.FC = () => {
                 console.error("Unexpected error:", err);
             }
         }
-        navigate("/");
         setSelectNav(0)
     }
 
@@ -180,26 +179,61 @@ const Header: React.FC = () => {
     };
 
     return (
-        <header className='bg-red-700 max-md:top-0 max-md:sticky'>
-            <div className='max-w-[1350px] mx-auto py-[20px] justify-between flex items-center max-[1350px]:px-[20px]'>
-                <div className='flex items-center gap-4 max-md:grid max-md:gap-1'>
-                    <h1 className='text-3xl font-bold text-white md:relative after:absolute after:w-[1px] after:h-full after:bg-white/40 after:right-[-10px]'>{header.title}</h1>
-                    <p className='text-lg text-yellow-200 '>{formatDate(header.date)}</p>
-                </div>
-                {isMobile ? (
-                    <>
-                        <button className="text-3xl text-white"
-                            onClick={handleClick}
-                        >
-                            {icons.iconMenu}
-                        </button>
-                        <Menu
-                            anchorEl={anchorEl}
-                            open={open}
-                            onClose={handleClose}
-                            PaperProps={PaperProps}
-                            MenuListProps={MenuListProps}
-                        >
+        <>
+            <header className='bg-red-700 max-md:top-0 max-md:sticky z-100'>
+                <div className='max-w-[1350px] mx-auto py-[20px] justify-between flex items-center max-[1350px]:px-[20px]'>
+                    <div className='flex items-center gap-4 max-md:grid max-md:gap-1'>
+                        <h1 className='text-3xl font-bold text-white md:relative after:absolute after:w-[1px] after:h-full after:bg-white/40 after:right-[-10px]'>{header.title}</h1>
+                        <p className='text-lg text-yellow-200 '>{formatDate(header.date)}</p>
+                    </div>
+                    {isMobile ? (
+                        <>
+                            <button className="text-3xl text-white"
+                                onClick={handleClick}
+                            >
+                                {icons.iconMenu}
+                            </button>
+                            <Menu
+                                anchorEl={anchorEl}
+                                open={open}
+                                onClose={handleClose}
+                                PaperProps={PaperProps}
+                                MenuListProps={MenuListProps}
+                            >
+                                <TextField
+                                    placeholder={header.descSearch}
+                                    slotProps={{
+                                        input: {
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        sx={{ color: 'var(--color-red-800)' }}
+                                                        onClick={handleSearchGeneral}>
+                                                        {header.iconSearch}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            ),
+                                        },
+                                    }}
+                                    sx={sxTextFieldMenu}
+                                    value={keywork}
+                                    onChange={(e) => setKeyword(e.target.value)}
+                                    onKeyDown={handleKeyPress}
+                                />
+                                {pages.map((page, index) => (
+                                    <MenuItem key={index}
+                                        onClick={() => {
+                                            setAnchorEl(null);
+                                            navigate(page.path);
+                                            setSelectNav(index)
+                                        }}
+                                        sx={sxMenuItem}><div className='flex gap-4 items-center text-xl'>{page.icon}{page.id}</div></MenuItem>
+                                ))}
+
+                            </Menu></>
+
+                    ) : (
+                        <div>
                             <TextField
                                 placeholder={header.descSearch}
                                 slotProps={{
@@ -207,7 +241,7 @@ const Header: React.FC = () => {
                                         endAdornment: (
                                             <InputAdornment position="end">
                                                 <IconButton
-                                                    sx={{ color: 'var(--color-red-800)' }}
+                                                    sx={{ color: 'white' }}
                                                     onClick={handleSearchGeneral}>
                                                     {header.iconSearch}
                                                 </IconButton>
@@ -215,49 +249,18 @@ const Header: React.FC = () => {
                                         ),
                                     },
                                 }}
-                                sx={sxTextFieldMenu}
+                                sx={sxTextField}
                                 value={keywork}
                                 onChange={(e) => setKeyword(e.target.value)}
                                 onKeyDown={handleKeyPress}
                             />
-                            {pages.map((page, index) => (
-                                <MenuItem key={index}
-                                    onClick={() => {
-                                        setAnchorEl(null);
-                                        navigate(page.path);
-                                        setSelectNav(index)
-                                    }}
-                                    sx={sxMenuItem}><div className='flex gap-4 items-center text-xl'>{page.icon}{page.id}</div></MenuItem>
-                            ))}
+                        </div>
+                    )}
+                </div>
+            </header >
+            <ToastContainer position="top-right" autoClose={3000} />
+        </>
 
-                        </Menu></>
-
-                ) : (
-                    <div>
-                        <TextField
-                            placeholder={header.descSearch}
-                            slotProps={{
-                                input: {
-                                    endAdornment: (
-                                        <InputAdornment position="end">
-                                            <IconButton
-                                                sx={{ color: 'white' }}
-                                                onClick={handleSearchGeneral}>
-                                                {header.iconSearch}
-                                            </IconButton>
-                                        </InputAdornment>
-                                    ),
-                                },
-                            }}
-                            sx={sxTextField}
-                            value={keywork}
-                            onChange={(e) => setKeyword(e.target.value)}
-                            onKeyDown={handleKeyPress}
-                        />
-                    </div>
-                )}
-            </div>
-        </header >
     )
 }
 
