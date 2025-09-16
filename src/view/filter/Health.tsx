@@ -1,12 +1,46 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useGlobal } from '../../context/GlobalContext';
+import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import Main from "./main";
 
 const Health: React.FC = () => {
+const { pages, general, keyApi, articles, setArticles, totalData, setTatalData, icons } = useGlobal();
 
-    const { text } = useGlobal();
+    // lazy loading chua lam
+
+    const Api_findCategory = async (key: string) => {
+        try {
+            const response = await axios.get("https://newsapi.org/v2/top-headlines", {
+                params: {
+                    country: 'us',        // hoặc 'gb', 'vn' tùy quốc gia
+                    category: `${key}`,   // <-- key sẽ là business, entertainment, health...
+                    apiKey: `${keyApi}`
+                }
+            })
+            if (response.data.articles && response.data.articles.length > 0) {
+                setTatalData(response.data.totalResults)
+                setArticles(response.data.articles);
+            }
+        }
+        catch (err) {
+            if (axios.isAxiosError(err)) {
+                console.error("Axios error:", err.message);
+                toast.error(err.message)
+            } else {
+                console.error("Unexpected error:", err);
+            }
+        }
+    }
+
+    useEffect(() => {
+        Api_findCategory(pages[3].id.toLocaleLowerCase())
+    }, [])
     return (
-        <div className="text-3xl font-bold underline flex items-center justify-center h-full" > {text}
-        </div>
+        <>
+            <Main titlePage={pages[3].id} />
+            <ToastContainer position="top-right" autoClose={3000} />
+        </>
     )
 }
 

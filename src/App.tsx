@@ -1,5 +1,5 @@
-import React, { Suspense, useEffect } from 'react';
-import { HashRouter, Route, Routes, Navigate, Outlet, BrowserRouter } from 'react-router-dom';
+import React, { Suspense } from 'react';
+import { Route, Routes, Navigate, Outlet, BrowserRouter } from 'react-router-dom';
 
 import { Footer, Header, Nav, BackToTop } from './components';
 import { useGlobal } from './context/GlobalContext';
@@ -17,15 +17,15 @@ const Page500 = React.lazy(() => import('./view/pages/page500/Page500'));
 const ProtectedRoute: React.FC = () => {
   const { isMobile } = useGlobal();
   return (
-    <div className="flex flex-col w-full h-[100vh]" >
+    <div className="flex flex-col w-full  bg-gray-100 " >
       {/* <!-- Header --> */}
       <BackToTop />
       <Header />
       {isMobile === false ?
-        <nav className='bg-red-800'>
+        <nav className='bg-red-800 top-0 sticky z-100'>
           <Nav
+            classNameUl='flex list-none mx-auto max-w-[1350px] items-center '
             classNameLi='px-[20px] py-[10px] hover:bg-red-700 transiton-all duration-300'
-            classNameUl='flex list-none mx-auto max-w-[1350px] items-center'
             classNameA='text-xl cursor-pointer'
             classNamelIActive='text-white bg-red-700'
           />
@@ -47,7 +47,7 @@ const App: React.FC = () => {
           <Route path="/500" element={<Page500 />} />
           <Route path="/" element={<ProtectedRoute />}>
             <Route index element={<Navigate to="/home" replace />} />
-            <Route path="/home" element={<Home />} />
+            <Route path="/home" element={<Home/>} />
             <Route path="/business" element={<Business />} />
             <Route path="/entertainment" element={<Entertainment />} />
             <Route path="/health" element={<Health />} />

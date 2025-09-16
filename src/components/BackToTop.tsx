@@ -43,14 +43,14 @@ const BackToTop: React.FC = () => {
                     className="shadow-lg transition-all duration-300 fixed bottom-[24px] right-[30px] text-white rounded-full flex items-center justify-center z-10 css-icon"
 
                 >
-                    <CircularProgress variant="determinate" value={scrollPercent} size="50px" sx={{ color: "var(--color-green-200)" }} />
+                    <CircularProgress variant="determinate" value={scrollPercent} size="50px" sx={{ color: "var(--color-red-800)" }} />
                     <Box
                         sx={{
                             position: 'absolute',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            color: "var(--color-green-200)",
+                            color: "var(--color-red-800)",
                         }}
                     >
                         {icons.iconBackToTop}

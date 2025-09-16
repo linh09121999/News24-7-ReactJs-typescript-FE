@@ -13,10 +13,16 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import type { SxProps, Theme } from "@mui/material/styles";
 
-import Nav from "./Nav";
-
 const Header: React.FC = () => {
-    const { header, keywork, setKeyword, keyApi, isMobile, icons, setSelectNav, pages } = useGlobal()
+    const { header,
+        keywork, setKeyword,
+        keyApi,
+        isMobile,
+        icons,
+        setSelectNav,
+        pages,
+        setArticles,
+        setTatalData } = useGlobal()
 
     const navigate = useNavigate();
 
@@ -73,7 +79,7 @@ const Header: React.FC = () => {
         '& .MuiOutlinedInput-root': {
             borderRadius: "10px",
             background: "white",
-            border:'1px solid var(--color-red-800)',
+            border: '1px solid var(--color-red-800)',
             padding: '3px 8px',
             transition: 'all 0.3s',
             fontSize: 'var(--text-xl)',
@@ -144,7 +150,8 @@ const Header: React.FC = () => {
                     apiKey: `${keyApi}`
                 }
             })
-            console.log(response.data)
+            setTatalData(response.data.totalResults)
+            setArticles(response.data.articles);
         }
         catch (err) {
             if (axios.isAxiosError(err)) {
@@ -153,6 +160,8 @@ const Header: React.FC = () => {
                 console.error("Unexpected error:", err);
             }
         }
+        navigate("/");
+        setSelectNav(0)
     }
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -171,7 +180,7 @@ const Header: React.FC = () => {
     };
 
     return (
-        <header className='bg-red-700'>
+        <header className='bg-red-700 max-md:top-0 max-md:sticky'>
             <div className='max-w-[1350px] mx-auto py-[20px] justify-between flex items-center max-[1350px]:px-[20px]'>
                 <div className='flex items-center gap-4 max-md:grid max-md:gap-1'>
                     <h1 className='text-3xl font-bold text-white md:relative after:absolute after:w-[1px] after:h-full after:bg-white/40 after:right-[-10px]'>{header.title}</h1>

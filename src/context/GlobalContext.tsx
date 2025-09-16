@@ -45,7 +45,7 @@ export interface Pages {
 const defaultPages: Pages[] = [
     {
         id: "General",
-        title: <FaHome className="text-3xl" />,
+        title: <FaHome className="text-[28px]" />,
         icon: <FaHome />,
         path: "/"
     },
@@ -114,6 +114,7 @@ export interface Icons {
     iconBackToTop: JSX.Element;
     iconMap: JSX.Element;
     iconNext: JSX.Element;
+    iconUser: JSX.Element
 }
 
 const defaultIcons: Icons = {
@@ -121,29 +122,80 @@ const defaultIcons: Icons = {
     iconClose: <IoClose />,
     iconBackToTop: <FaAngleDoubleUp />,
     iconMap: <FaMapMarkerAlt size={30} />,
-    iconNext: <MdNavigateNext size={24} />
+    iconNext: <MdNavigateNext size={24} />,
+    iconUser: <FaUser />
 }
 
 export interface Article {
     source: {
-        id: string | null;
+        id: string;
         name: string;
     };
-    author: string | null;
+    author: string;
     title: string;
-    description: string | null;
+    description: string;
     url: string;
-    urlToImage: string | null;
+    urlToImage: string;
     publishedAt: string;
-    content: string | null;
+    content: string;
 }
 
-export interface NewsResponse {
-    status: "ok" | "error";
-    totalResults: number;
-    articles: Article[];
-    code?: string;     // nếu lỗi
-    message?: string;  // nếu lỗi
+export interface General {
+    sidebarTitle: string;
+    adsTitle: string;
+}
+
+const defaultGeneral: General = {
+    sidebarTitle: 'Most Viewed News',
+    adsTitle: 'Advertisement'
+}
+
+export interface lazyLoading {
+    pageLazyLoading: number
+}
+
+export interface Footer {
+    footerText: string;
+    yearFull: number;
+}
+
+const defaultFooter: Footer = {
+    footerText: "All rights reserved",
+    yearFull: new Date().getFullYear()
+}
+
+export interface SocialMediaContent {
+    title: string;
+    link: string;
+    icon: JSX.Element;
+}
+
+const defaultSocialMediaContent: SocialMediaContent[] = [
+    {
+        title: "FaceBook",
+        link: "https://www.facebook.com/ThuyLinh.09121999",
+        icon: <FaFacebookF className="mx-auto" />
+    },
+    {
+        title: "GitHub",
+        link: "https://github.com/linh09121999",
+        icon: <TbBrandGithubFilled className="mx-auto" />
+    },
+    {
+        title: "LinkedIn",
+        link: "https://www.linkedin.com/in/thuylinh09121999/",
+        icon: <FaLinkedinIn className="mx-auto" />
+    }
+]
+
+export interface SocialMedia {
+    title: string;
+    socialMediaContent: SocialMediaContent[]
+}
+
+const defaultSocialMedia: SocialMedia = {
+    title: "SOCIAL MEDIA",
+    socialMediaContent: defaultSocialMediaContent
 }
 
 export interface GlobalState {
@@ -158,6 +210,13 @@ export interface GlobalState {
     keyApi: string,
     setSelectNav: (index: number) => void;
     selectNav: number;
+    general: General;
+    articles: Article[];
+    setArticles: React.Dispatch<React.SetStateAction<Article[]>>;
+    totalData: number;
+    setTatalData: (total: number) => void;
+    footerContent: Footer;
+    socialMedia: SocialMedia;
 }
 
 const GlobalContext = createContext<GlobalState | undefined>(undefined);
@@ -166,11 +225,14 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     const [text, setText] = useState<string | null>("Hello");
     const [keywork, setKeyword] = useState<string>("")
 
-    const keyApi = "c974ef460e2e46378e496ade0c22d3ae"
+    const keyApi = "43e1cbf53535470e9755d9d450375588" //"c974ef460e2e46378e496ade0c22d3ae"
 
     const [selectNav, setSelectNav] = useState<number>(0);
 
     const isMobile = useMediaQuery("(max-width:768px)");
+
+    const [articles, setArticles] = useState<Article[]>([]);
+    const [totalData, setTatalData] = useState<number>(0)
 
     const value = {
         text, setText,
@@ -181,6 +243,11 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         keyApi,
         selectNav, setSelectNav,
         isMobile,
+        general: defaultGeneral,
+        articles, setArticles,
+        totalData, setTatalData,
+        footerContent: defaultFooter,
+        socialMedia: defaultSocialMedia,
     }
 
     return (

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 type navProps = {
     classNameUl?: string;
-    iconNext?: JSX.Element;
     classNameLi?: string;
     classNameA?: string;
     classNamelIActive?: string;
@@ -13,7 +12,6 @@ type navProps = {
 
 const Nav: React.FC<navProps> = ({
     classNameUl,
-    iconNext,
     classNameLi,
     classNameA,
     classNamelIActive,
@@ -34,7 +32,7 @@ const Nav: React.FC<navProps> = ({
                                 }}
                                 className={`${classNameA} `}
                             >
-                                <div className={classNameTitle}>{iconNext} {page.title}</div>
+                                <div className={classNameTitle}>{page.title}</div>
                             </a>
                         </li>
                     ))}
