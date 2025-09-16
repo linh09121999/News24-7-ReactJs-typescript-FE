@@ -26,3 +26,9 @@
 .MuiInput-root::after {
     border-bottom: 2px solid var(--color-green-400) !important
 }
+
+.css-icon:hover {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes fly-1 { from { transform: translateY(0.1em); } to { transform: translateY(-0.1em); } }

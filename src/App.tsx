@@ -11,7 +11,7 @@ const Page500 = React.lazy(() => import('./view/pages/page500/Page500'));
 const ProtectedRoute: React.FC = () => {
   const { isMobile } = useGlobal();
   return (
-    <div className="flex flex-col w-full  bg-gray-100 " >
+    <div className="flex flex-col w-full bg-gray-100 min-h-screen" >
       {/* <!-- Header --> */}
       <BackToTop />
       <Header />
@@ -42,12 +42,6 @@ const App: React.FC = () => {
           <Route path="/" element={<ProtectedRoute />}>
             <Route index element={<Navigate to="/home" replace />} />
             <Route path="/home" element={<Home/>} />
-            {/* <Route path="/business" element={<Business />} />
-            <Route path="/entertainment" element={<Entertainment />} />
-            <Route path="/health" element={<Health />} />
-            <Route path="/science" element={<Science />} />
-            <Route path="/sports" element={<Sports />} />
-            <Route path="/technology" element={<Technology />} /> */}
           </Route>
         </Routes>
       </Suspense>

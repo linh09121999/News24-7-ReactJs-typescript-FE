@@ -22,7 +22,8 @@ const Header: React.FC = () => {
         setSelectNav,
         pages,
         setArticles,
-        setTatalData } = useGlobal()
+        setTatalData,
+        setTitlePage } = useGlobal()
 
     const navigate = useNavigate();
 
@@ -144,7 +145,7 @@ const Header: React.FC = () => {
             const response = await axios.get("https://newsapi.org/v2/everything", {
                 params: {
                     q: `${keywork}`,
-                    from: '2025-08-15',
+                    from: '2025-08-16',
                     to: `${formatDateToYYYYMMDD(header.date)}`,
                     sortBy: "publishedAt",
                     apiKey: `${keyApi}`
@@ -161,6 +162,7 @@ const Header: React.FC = () => {
             }
         }
         setSelectNav(0)
+        // setTitlePage(keywork)
     }
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {

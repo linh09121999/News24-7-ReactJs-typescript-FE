@@ -154,14 +154,36 @@ export interface lazyLoading {
     pageLazyLoading: number
 }
 
+export interface AboutNewsApiContent{
+    title: string;
+    desc: string;
+    buttonText: string;
+    name: string;
+    logo: string;
+    link: string
+}
+
+const defaultAboutNewsApiContent: AboutNewsApiContent = {
+    title: "About Our News Source",
+    desc: "NewsAPI is a simple HTTP REST API for searching and retrieving live articles from all over the web. It provides current and historical news articles from over 80,000 sources.",
+    buttonText: "Get API Key",
+    logo: "https://newsapi.org/images/n-logo-border.png",
+    name: "NewsAPI.org",
+    link: "https://newsapi.org"
+}
+
 export interface Footer {
     footerText: string;
     yearFull: number;
+    descText: string;
+    aboutNewsApiContent: AboutNewsApiContent
 }
 
 const defaultFooter: Footer = {
     footerText: "All rights reserved",
-    yearFull: new Date().getFullYear()
+    yearFull: new Date().getFullYear(),
+    descText: 'Bringing you the latest and most relevant news from around the world. Trusted by millions of readers daily for accurate and timely information.',
+    aboutNewsApiContent: defaultAboutNewsApiContent
 }
 
 export interface SocialMediaContent {
