@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
                     />
                     <div className='grid items-center my-[30px] grid-col-1 md:grid-cols-2 gap-10'>
                         <div className='max-w-[500px] grid gap-6 max-md:max-w-full self-start'>
-                            <p className='text-4xl font-bold text-red-800/70 max-md:text-center'>{header.title}</p>
+                            <p className='text-2xl font-bold text-red-800/70 max-md:text-center'>{header.title}</p>
                             <p>{footerContent.descText}</p>
                             <ul className='flex gap-4 max-md:justify-center '>
                                 {socialMedia.socialMediaContent.map((social, index) => (
@@ -32,13 +32,13 @@ const Footer: React.FC = () => {
                             </ul>
                         </div>
                         <div className='max-w-[500px] grid gap-6 max-md:max-w-full justify-self-end'>
-                            <p className='text-4xl font-bold text-red-800/70 max-md:text-center'>{footerContent.aboutNewsApiContent.title}</p>
+                            <p className='text-2xl font-bold text-red-800/70 max-md:text-center'>{footerContent.aboutNewsApiContent.title}</p>
                             <div className="flex items-center">
                                 <img className='h-[30px] mr-[10px]' src={`${footerContent.aboutNewsApiContent.logo}`} alt="NewsAPI Logo" />
                                 <span>{footerContent.aboutNewsApiContent.name}</span>
                             </div>
                             <p>{footerContent.aboutNewsApiContent.desc}</p>
-                            <div className="css-icon bg-red-800/80 px-[20px] py-[10px] text-white rounded-[20px] w-fit">
+                            <div className="css-icon bg-red-700/80 px-[20px] py-[10px] text-white rounded-[20px] w-fit">
                                 <a href={`${footerContent.aboutNewsApiContent.link}`} target='_blank' className=''>
                                     {footerContent.aboutNewsApiContent.buttonText}
                                 </a>

@@ -23,7 +23,10 @@ const Header: React.FC = () => {
         pages,
         setArticles,
         setTatalData,
-        setTitlePage } = useGlobal()
+        setVisibleArticles,
+        pageSize,
+        setCurrentPage
+    } = useGlobal()
 
     const navigate = useNavigate();
 
@@ -145,14 +148,16 @@ const Header: React.FC = () => {
             const response = await axios.get("https://newsapi.org/v2/everything", {
                 params: {
                     q: `${keywork}`,
-                    from: '2025-08-16',
-                    to: `${formatDateToYYYYMMDD(header.date)}`,
+                    // from: '2025-08-16',
+                    // to: `${formatDateToYYYYMMDD(header.date)}`,
                     sortBy: "publishedAt",
                     apiKey: `${keyApi}`
                 }
             })
             setTatalData(response.data.totalResults)
             setArticles(response.data.articles);
+            setVisibleArticles(response.data.articles.slice(0, pageSize));
+            setCurrentPage(1);
         }
         catch (err) {
             if (axios.isAxiosError(err)) {

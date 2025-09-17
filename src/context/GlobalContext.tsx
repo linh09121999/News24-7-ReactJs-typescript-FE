@@ -154,7 +154,7 @@ export interface lazyLoading {
     pageLazyLoading: number
 }
 
-export interface AboutNewsApiContent{
+export interface AboutNewsApiContent {
     title: string;
     desc: string;
     buttonText: string;
@@ -233,12 +233,17 @@ export interface GlobalState {
     general: General;
     articles: Article[];
     setArticles: React.Dispatch<React.SetStateAction<Article[]>>;
+    visibleArticles: Article[];
+    setVisibleArticles: React.Dispatch<React.SetStateAction<Article[]>>;
     totalData: number;
     setTatalData: (total: number) => void;
+    currentPage: number;
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
     footerContent: Footer;
     socialMedia: SocialMedia;
     titlePage: string;
-    setTitlePage: (page: string) => void
+    setTitlePage: (page: string) => void;
+    pageSize: number
 }
 
 const GlobalContext = createContext<GlobalState | undefined>(undefined);
@@ -246,7 +251,7 @@ const GlobalContext = createContext<GlobalState | undefined>(undefined);
 export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     const [keywork, setKeyword] = useState<string>("")
 
-    const keyApi = "43e1cbf53535470e9755d9d450375588" //"c974ef460e2e46378e496ade0c22d3ae"
+    const keyApi = "c974ef460e2e46378e496ade0c22d3ae" //"43e1cbf53535470e9755d9d450375588" //
 
     const [selectNav, setSelectNav] = useState<number>(0);
 
@@ -255,6 +260,10 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     const [articles, setArticles] = useState<Article[]>([]);
     const [totalData, setTatalData] = useState<number>(0)
     const [titlePage, setTitlePage] = useState<string>("General");
+    const [visibleArticles, setVisibleArticles] = useState<Article[]>([])
+    const [currentPage, setCurrentPage] = useState<number>(0)
+
+    const pageSize = 12
 
     const value = {
         pages: defaultPages,
@@ -266,10 +275,13 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         isMobile,
         general: defaultGeneral,
         articles, setArticles,
+        visibleArticles, setVisibleArticles,
         totalData, setTatalData,
+        currentPage, setCurrentPage,
         footerContent: defaultFooter,
         socialMedia: defaultSocialMedia,
-        titlePage, setTitlePage
+        titlePage, setTitlePage,
+        pageSize
     }
 
     return (
