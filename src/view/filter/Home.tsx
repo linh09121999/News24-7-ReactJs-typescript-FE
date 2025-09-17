@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useGlobal } from '../../context/GlobalContext';
-import type { Article } from "../../context/GlobalContext";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import { Card, CardContent, CardMedia, Typography, CardActionArea } from '@mui/material';
@@ -75,7 +74,7 @@ const General: React.FC = () => {
     }
 
     useEffect(() => {
-        Api_findCategory(titlePage.toLocaleLowerCase())
+        // Api_findCategory(titlePage.toLocaleLowerCase())
     }, [titlePage])
 
 

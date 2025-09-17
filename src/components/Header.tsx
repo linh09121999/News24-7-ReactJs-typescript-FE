@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useGlobal } from '../context/GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -40,10 +40,10 @@ const Header: React.FC = () => {
         });
     };
 
-    const formatDateToYYYYMMDD = (date: Date | null): string => {
-        if (!date) return "No date selected";
-        return date.toISOString().split("T")[0];
-    }
+    // const formatDateToYYYYMMDD = (date: Date | null): string => {
+    //     if (!date) return "No date selected";
+    //     return date.toISOString().split("T")[0];
+    // }
 
     const sxTextField: SxProps<Theme> = {
         width: "100%",

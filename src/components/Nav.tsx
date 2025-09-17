@@ -1,6 +1,5 @@
 import React, { type JSX } from 'react';
 import { useGlobal } from '../context/GlobalContext';
-import { useNavigate } from 'react-router-dom';
 
 type navProps = {
     classNameUl?: string;
@@ -18,7 +17,7 @@ const Nav: React.FC<navProps> = ({
     classNameTitle
 }) => {
     const { pages, setSelectNav, selectNav, isMobile, setTitlePage } = useGlobal();
-    const navigate = useNavigate();
+
     return (
         <>
             {isMobile ? (<></>) : (

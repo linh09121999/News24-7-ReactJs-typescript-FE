@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useRef, useEffect } from "react";
+import React, { createContext, useContext, useState } from "react";
 import type { JSX, ReactNode } from "react";
 import { useMediaQuery } from "@mui/material"
 
@@ -7,31 +7,17 @@ import {
     FaLinkedinIn,
     FaUser,
     FaHome,
-    FaMailBulk,
     FaMapMarkerAlt,
-    FaPhoneAlt,
     FaAngleDoubleUp,
-    FaLaptopCode,
-    FaUsers,
-    FaLightbulb,
-    FaCode,
-    FaHtml5,
-    FaCss3Alt,
-    FaGitAlt
 } from "react-icons/fa";
-import { FaBriefcase, FaCodeBranch } from "react-icons/fa6";
 import { CgMenu } from "react-icons/cg";
 import {
-    IoClose,
-    IoSparkles
+    IoClose
 } from "react-icons/io5";
-import { MdNavigateNext } from "react-icons/md";
-import { VscVscodeInsiders, VscVscode } from "react-icons/vsc";
-import { SiFramework, SiAdobeillustrator } from "react-icons/si";
-import { BiLogoJavascript, BiLogoTypescript } from "react-icons/bi";
-import { RiReactjsLine, RiTailwindCssFill } from "react-icons/ri";
-import { BsLayers } from "react-icons/bs";
-import { GrFormNextLink } from "react-icons/gr";
+import { MdNavigateNext, MdBusinessCenter, MdScience, MdSportsBaseball } from "react-icons/md";
+import { RiMovie2AiFill } from "react-icons/ri";
+import { GiHealthNormal } from "react-icons/gi";
+import { GrTechnology } from "react-icons/gr";
 import { TbBrandGithubFilled } from "react-icons/tb";
 import { IoMdSearch } from "react-icons/io";
 
@@ -52,37 +38,37 @@ const defaultPages: Pages[] = [
     {
         id: "Business",
         title: "Business",
-        icon: <></>,
+        icon: <MdBusinessCenter />,
         path: "/business"
     },
     {
         id: "Entertainment",
         title: "Entertainment",
-        icon: <></>,
+        icon: <RiMovie2AiFill />,
         path: "/entertainment"
     },
     {
         id: "Health",
         title: "Health",
-        icon: <></>,
+        icon: <GiHealthNormal />,
         path: "/health"
     },
     {
         id: "Science",
         title: "Science",
-        icon: <></>,
+        icon: <MdScience />,
         path: "/science"
     },
     {
         id: "Sports",
         title: "Sports",
-        icon: <></>,
+        icon: <MdSportsBaseball />,
         path: "/sports"
     },
     {
         id: "Technology",
         title: "Technology",
-        icon: <></>,
+        icon: <GrTechnology />,
         path: "/technology"
     }
 ]
