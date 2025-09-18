@@ -237,7 +237,7 @@ const GlobalContext = createContext<GlobalState | undefined>(undefined);
 export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     const [keywork, setKeyword] = useState<string>("")
 
-    const keyApi = "c974ef460e2e46378e496ade0c22d3ae" //"43e1cbf53535470e9755d9d450375588" //
+    const keyApi = "43e1cbf53535470e9755d9d450375588" // "c974ef460e2e46378e496ade0c22d3ae" //
 
     const [selectNav, setSelectNav] = useState<number>(0);
 

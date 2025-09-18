@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useGlobal } from '../../context/GlobalContext';
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
@@ -45,8 +45,6 @@ const General: React.FC = () => {
     const formatDate = (isoString: string) =>
         format(new Date(isoString), "MM/dd/yyyy hh:mm a");
 
-    // lazy loading chua lam
-
     const Api_findCategory = async (key: string) => {
         try {
             const response = await axios.get("https://newsapi.org/v2/top-headlines", {
@@ -54,7 +52,7 @@ const General: React.FC = () => {
                     country: 'us',        // hoặc 'gb', 'vn' tùy quốc gia
                     category: `${key}`,   // <-- key sẽ là business, entertainment, health...
                     apiKey: `${keyApi}`
-                }
+                },
             })
             if (response.data.articles && response.data.articles.length > 0) {
                 setTatalData(response.data.totalResults)
@@ -74,7 +72,7 @@ const General: React.FC = () => {
     }
 
     useEffect(() => {
-        // Api_findCategory(titlePage.toLocaleLowerCase())
+        Api_findCategory(titlePage.toLocaleLowerCase())
     }, [titlePage])
 
 
