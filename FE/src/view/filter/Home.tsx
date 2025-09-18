@@ -53,6 +53,10 @@ const General: React.FC = () => {
                     category: `${key}`,   // <-- key sẽ là business, entertainment, health...
                     apiKey: `${keyApi}`
                 },
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
             })
             if (response.data.articles && response.data.articles.length > 0) {
                 setTatalData(response.data.totalResults)
