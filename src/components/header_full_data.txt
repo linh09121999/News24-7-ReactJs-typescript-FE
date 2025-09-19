@@ -7,17 +7,24 @@ import {
     MenuItem,
     IconButton,
 } from '@mui/material'
+import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 
 import type { SxProps, Theme } from "@mui/material/styles";
 
 const Header: React.FC = () => {
     const { header,
-        keyword, setKeyword,
+        keywork, setKeyword,
+        keyApi,
         isMobile,
         icons,
         setSelectNav,
         pages,
+        setArticles,
+        setTatalData,
+        setVisibleArticles,
+        pageSize,
+        setCurrentPage,
         setTitlePage,
         setSearchType
     } = useGlobal()
@@ -132,15 +139,37 @@ const Header: React.FC = () => {
     }
 
     const handleSearchGeneral = async () => {
-        if (!keyword.trim()) {
+        if (!keywork.trim()) {
             toast.error("You have not entered the search keyword")
             return;
         }
+        try {
+            // const response = await axios.get("https://newsapi.org/v2/everything", {
+            const response = await axios.get("https://news247-be.onrender.com/api/everything", {
+                params: {
+                    q: `${keywork}`,
+                    // from: '2025-08-16',
+                    // to: `${formatDateToYYYYMMDD(header.date)}`,
+                    sortBy: "publishedAt",
+                    apiKey: `${keyApi}`
+                }
+            })
+            setTatalData(response.data.totalResults)
+            setArticles(response.data.articles);
+            setVisibleArticles(response.data.articles.slice(0, pageSize));
+            setCurrentPage(1);
+        }
+        catch (err) {
+            if (axios.isAxiosError(err)) {
+                console.error("Axios error:", err.message);
+            } else {
+                console.error("Unexpected error:", err);
+            }
+        }
         setSelectNav(0)
         setSearchType("word");
-        setTitlePage(keyword)
+        setTitlePage(keywork)
         setAnchorEl(null);
-        console.log(keyword)
     }
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -200,7 +229,7 @@ const Header: React.FC = () => {
                                         },
                                     }}
                                     sx={sxTextFieldMenu}
-                                    value={keyword}
+                                    value={keywork}
                                     onChange={(e) => setKeyword(e.target.value)}
                                     onKeyDown={handleKeyPress}
                                 />
@@ -236,7 +265,7 @@ const Header: React.FC = () => {
                                     },
                                 }}
                                 sx={sxTextField}
-                                value={keyword}
+                                value={keywork}
                                 onChange={(e) => setKeyword(e.target.value)}
                                 onKeyDown={handleKeyPress}
                             />

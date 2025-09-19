@@ -217,8 +217,8 @@ export interface GlobalState {
     pages: Pages[];
     isMobile: boolean;
     icons: Icons;
-    keywork: string;
-    setKeyword: (keywork: string) => void;
+    keyword: string;
+    setKeyword: (keyword: string) => void;
     keyApi: string,
     setSelectNav: (index: number) => void;
     selectNav: number;
@@ -243,9 +243,9 @@ export interface GlobalState {
 const GlobalContext = createContext<GlobalState | undefined>(undefined);
 
 export const GlobalProvider = ({ children }: { children: ReactNode }) => {
-    const [keywork, setKeyword] = useState<string>("")
+    const [keyword, setKeyword] = useState<string>("")
 
-    const keyApi = "43e1cbf53535470e9755d9d450375588" // "c974ef460e2e46378e496ade0c22d3ae" //
+    const keyApi = "c974ef460e2e46378e496ade0c22d3ae" // "43e1cbf53535470e9755d9d450375588" // "c974ef460e2e46378e496ade0c22d3ae" //
 
     const [selectNav, setSelectNav] = useState<number>(0);
 
@@ -264,7 +264,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         pages: defaultPages,
         header: defaultHeader,
         icons: defaultIcons,
-        keywork, setKeyword,
+        keyword, setKeyword,
         keyApi,
         selectNav, setSelectNav,
         isMobile,
