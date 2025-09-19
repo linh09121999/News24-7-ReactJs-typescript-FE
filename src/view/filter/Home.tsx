@@ -14,7 +14,7 @@ const flyX = keyframes`
 
 const General: React.FC = () => {
 
-    const { keyApi, setArticles, visibleArticles, setVisibleArticles, currentPage, setCurrentPage, setTatalData, titlePage, articles, totalData, icons, pageSize } = useGlobal();
+    const { keyApi, setArticles, visibleArticles, setVisibleArticles, currentPage, setCurrentPage, setTatalData, titlePage, articles, totalData, icons, pageSize, searchType, setSearchType } = useGlobal();
 
     const sxCard: SxProps<Theme> = {
         height: '100%',
@@ -64,6 +64,7 @@ const General: React.FC = () => {
                 setArticles(response.data.articles);
                 setVisibleArticles(response.data.articles.slice(0, pageSize));
                 setCurrentPage(1);
+                setSearchType("category");
             }
         }
         catch (err) {
@@ -77,8 +78,10 @@ const General: React.FC = () => {
     }
 
     useEffect(() => {
-        Api_findCategory(titlePage.toLocaleLowerCase())
-    }, [titlePage])
+        if (searchType === "category" && titlePage) {
+            Api_findCategory(titlePage.toLocaleLowerCase())
+        }
+    }, [titlePage, searchType])
 
 
     const loaderRef = useRef<HTMLDivElement | null>(null)

@@ -229,6 +229,8 @@ export interface GlobalState {
     socialMedia: SocialMedia;
     titlePage: string;
     setTitlePage: (page: string) => void;
+    searchType: string;
+    setSearchType: (type: string) => void;
     pageSize: number
 }
 
@@ -248,6 +250,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
     const [titlePage, setTitlePage] = useState<string>("General");
     const [visibleArticles, setVisibleArticles] = useState<Article[]>([])
     const [currentPage, setCurrentPage] = useState<number>(0)
+    const [searchType, setSearchType] = useState<string>("category");
 
     const pageSize = 12
 
@@ -267,6 +270,7 @@ export const GlobalProvider = ({ children }: { children: ReactNode }) => {
         footerContent: defaultFooter,
         socialMedia: defaultSocialMedia,
         titlePage, setTitlePage,
+        searchType, setSearchType,
         pageSize
     }
 

@@ -25,7 +25,8 @@ const Header: React.FC = () => {
         setVisibleArticles,
         pageSize,
         setCurrentPage,
-        setTitlePage
+        setTitlePage,
+        setSearchType
     } = useGlobal()
 
     const formatDate = (date: Date | null): string => {
@@ -157,6 +158,8 @@ const Header: React.FC = () => {
             setArticles(response.data.articles);
             setVisibleArticles(response.data.articles.slice(0, pageSize));
             setCurrentPage(1);
+            setSearchType("word");
+            setTitlePage(keywork);
         }
         catch (err) {
             if (axios.isAxiosError(err)) {
