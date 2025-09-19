@@ -1,6 +1,5 @@
 import React from 'react';
 import { useGlobal } from '../context/GlobalContext';
-import { useNavigate } from 'react-router-dom';
 import {
     TextField,
     InputAdornment,
@@ -25,10 +24,9 @@ const Header: React.FC = () => {
         setTatalData,
         setVisibleArticles,
         pageSize,
-        setCurrentPage
+        setCurrentPage,
+        setTitlePage
     } = useGlobal()
-
-    const navigate = useNavigate();
 
     const formatDate = (date: Date | null): string => {
         if (!date) return "No date selected";
@@ -118,7 +116,7 @@ const Header: React.FC = () => {
             left: '0 !important',
             right: '0 !important',
             top: '108px !important',
-            maxWidth: 'calc(100% - 16px)'
+            maxWidth: 'calc(100%)'
         },
     }
 
@@ -145,7 +143,8 @@ const Header: React.FC = () => {
             return;
         }
         try {
-            const response = await axios.get("https://newsapi.org/v2/everything", {
+            // const response = await axios.get("https://newsapi.org/v2/everything", {
+            const response = await axios.get("http://localhost:5000/api/everything", {
                 params: {
                     q: `${keywork}`,
                     // from: '2025-08-16',
@@ -171,8 +170,13 @@ const Header: React.FC = () => {
     }
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        // 1. Ngăn Menu “ăn” phím
+        e.stopPropagation();
+        // 2. Nếu bạn có logic riêng (Enter để search…) thì giữ lại:
         if (e.key === 'Enter') {
+            e.preventDefault();
             handleSearchGeneral();
+            setAnchorEl(null);
         }
     };
 
@@ -231,13 +235,14 @@ const Header: React.FC = () => {
                                     <MenuItem key={index}
                                         onClick={() => {
                                             setAnchorEl(null);
-                                            navigate(page.path);
                                             setSelectNav(index)
+                                            setTitlePage(page.id)
                                         }}
                                         sx={sxMenuItem}><div className='flex gap-4 items-center text-xl'>{page.icon}{page.id}</div></MenuItem>
                                 ))}
 
-                            </Menu></>
+                            </Menu>
+                        </>
 
                     ) : (
                         <div>
