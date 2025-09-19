@@ -108,8 +108,8 @@ const General: React.FC = () => {
 
     return (
         <>
-            <main className='min-h-[33vh] my-[30px] p-[20px]  ' >
-                <div className="max-w-[1350px] mx-auto justify-between flex items-center gap-4 mb-[20px] pb-[10px] border-b-2 border-gray-200 max-[1350px]:mx-[20px]">
+            <main className='min-h-[33vh] my-[30px] p-[20px]' >
+                <div className="max-w-[1350px] mx-auto justify-between flex items-center gap-4 mb-[20px] pb-[10px] border-b-2 border-gray-200">
                     <h2 className="text-2xl text-red-800 font-bold relative ml-[12px] before:absolute before:w-[4px] before:h-full before:bg-red-800 before:left-[-10px]">{titlePage}</h2>
                     <div className="text-lg bg-red-800/20 text-red-800 px-[10px] py-[5px] rounded-[15px]">total: {totalData} results</div>
                 </div>
