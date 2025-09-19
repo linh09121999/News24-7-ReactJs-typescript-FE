@@ -14,7 +14,7 @@ const flyX = keyframes`
 
 const General: React.FC = () => {
 
-    const { keyApi, setArticles, visibleArticles, setVisibleArticles, currentPage, setCurrentPage, setTatalData, titlePage, articles, totalData, icons, pageSize, searchType, setSearchType } = useGlobal();
+    const { keyApi, setArticles, visibleArticles, setVisibleArticles, currentPage, setCurrentPage, setTatalData, titlePage, articles, totalData, icons, pageSize, searchType } = useGlobal();
 
     const sxCard: SxProps<Theme> = {
         height: '100%',
@@ -64,7 +64,6 @@ const General: React.FC = () => {
                 setArticles(response.data.articles);
                 setVisibleArticles(response.data.articles.slice(0, pageSize));
                 setCurrentPage(1);
-                setSearchType("category");
             }
         }
         catch (err) {

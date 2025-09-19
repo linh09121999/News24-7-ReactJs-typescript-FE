@@ -16,7 +16,7 @@ const Nav: React.FC<navProps> = ({
     classNamelIActive,
     classNameTitle
 }) => {
-    const { pages, setSelectNav, selectNav, isMobile, setTitlePage } = useGlobal();
+    const { pages, setSelectNav, selectNav, isMobile, setTitlePage, setSearchType } = useGlobal();
 
     return (
         <>
@@ -29,6 +29,7 @@ const Nav: React.FC<navProps> = ({
                                     // navigate(page.path)
                                     setSelectNav(index)
                                     setTitlePage(page.id)
+                                    setSearchType("category");
                                 }}
                                 className={`${classNameA} `}
                             >

@@ -158,8 +158,6 @@ const Header: React.FC = () => {
             setArticles(response.data.articles);
             setVisibleArticles(response.data.articles.slice(0, pageSize));
             setCurrentPage(1);
-            setSearchType("word");
-            setTitlePage(keywork);
         }
         catch (err) {
             if (axios.isAxiosError(err)) {
@@ -169,7 +167,9 @@ const Header: React.FC = () => {
             }
         }
         setSelectNav(0)
-        // setTitlePage(keywork)
+        setSearchType("word");
+        setTitlePage(keywork)
+        setAnchorEl(null);
     }
 
     const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -179,7 +179,6 @@ const Header: React.FC = () => {
         if (e.key === 'Enter') {
             e.preventDefault();
             handleSearchGeneral();
-            setAnchorEl(null);
         }
     };
 
@@ -240,6 +239,7 @@ const Header: React.FC = () => {
                                             setAnchorEl(null);
                                             setSelectNav(index)
                                             setTitlePage(page.id)
+                                            setSearchType("category");
                                         }}
                                         sx={sxMenuItem}><div className='flex gap-4 items-center text-xl'>{page.icon}{page.id}</div></MenuItem>
                                 ))}
