@@ -144,7 +144,7 @@ const Header: React.FC = () => {
         }
         try {
             // const response = await axios.get("https://newsapi.org/v2/everything", {
-            const response = await axios.get("http://localhost:5000/api/everything", {
+            const response = await axios.get("https://news247-be.onrender.com/api/everything", {
                 params: {
                     q: `${keywork}`,
                     // from: '2025-08-16',

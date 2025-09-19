@@ -48,7 +48,7 @@ const General: React.FC = () => {
     const Api_findCategory = async (key: string) => {
         try {
             // const response = await axios.get("https://newsapi.org/v2/top-headlines", {
-            const response = await axios.get("http://localhost:5000/api/headlines", {
+            const response = await axios.get("https://news247-be.onrender.com/api/headlines", {
                 params: {
                     country: 'us',        // hoặc 'gb', 'vn' tùy quốc gia
                     category: `${key}`,   // <-- key sẽ là business, entertainment, health...
