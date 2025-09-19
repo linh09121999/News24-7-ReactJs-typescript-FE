@@ -12,11 +12,17 @@ import {
 } from "react-icons/fa";
 import { CgMenu } from "react-icons/cg";
 import {
-    IoClose
+    IoClose,
+    IoHomeOutline
 } from "react-icons/io5";
-import { MdNavigateNext, MdBusinessCenter, MdScience, MdSportsBaseball } from "react-icons/md";
-import { RiMovie2AiFill } from "react-icons/ri";
-import { GiHealthNormal } from "react-icons/gi";
+import {
+    MdNavigateNext,
+    MdOutlineBusinessCenter,
+    MdOutlineScience,
+    MdOutlineSportsBasketball,
+    MdOutlineHealthAndSafety
+} from "react-icons/md";
+import { RiMovie2AiLine } from "react-icons/ri";
 import { GrTechnology } from "react-icons/gr";
 import { TbBrandGithubFilled } from "react-icons/tb";
 import { IoMdSearch } from "react-icons/io";
@@ -32,37 +38,37 @@ const defaultPages: Pages[] = [
     {
         id: "General",
         title: <FaHome className="text-[28px]" />,
-        icon: <FaHome />,
+        icon: <IoHomeOutline />,
         path: "/"
     },
     {
         id: "Business",
         title: "Business",
-        icon: <MdBusinessCenter />,
+        icon: <MdOutlineBusinessCenter />,
         path: "/business"
     },
     {
         id: "Entertainment",
         title: "Entertainment",
-        icon: <RiMovie2AiFill />,
+        icon: <RiMovie2AiLine />,
         path: "/entertainment"
     },
     {
         id: "Health",
         title: "Health",
-        icon: <GiHealthNormal />,
+        icon: <MdOutlineHealthAndSafety />,
         path: "/health"
     },
     {
         id: "Science",
         title: "Science",
-        icon: <MdScience />,
+        icon: <MdOutlineScience />,
         path: "/science"
     },
     {
         id: "Sports",
         title: "Sports",
-        icon: <MdSportsBaseball />,
+        icon: <MdOutlineSportsBasketball />,
         path: "/sports"
     },
     {
