@@ -137,6 +137,11 @@ const General: React.FC = () => {
         }
     }, []);
 
+
+    useEffect(() => {
+        Api_findCategory(titlePage.toLowerCase(), 1);
+    }, [])
+
     // load page 1 khi đổi category
     useEffect(() => {
         if (searchType === "category" && titlePage) {
